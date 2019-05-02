@@ -1,0 +1,12 @@
+<%= render 'header' %>
+
+<h1>Authors!</h1>
+<%= link_to "New Author", new_author_path %>
+<ul>
+  <% @authors.each do |author| %>
+    <li>
+      <%= link_to author.name, author %>
+      <%= " (#{author.birth_year})" %>
+    </li>
+  <% end %>
+</ul>

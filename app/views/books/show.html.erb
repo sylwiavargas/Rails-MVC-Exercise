@@ -1,0 +1,25 @@
+<%= render 'header' %>
+
+<h1><%= @book.title %>  (<%= @book.pages %> pages)</h1>
+
+<p>Written by:</p>
+<ul>
+  <% @book.queries.each do |query| %>
+    <li><%= link_to query.author.name, query.author %></li>
+    <%= button_to "Delete #{query.author.name}", query_path(query), method: :delete %>
+  <% end %>
+</ul>
+    <p> Add another author:</p>
+<ul>
+    <li>
+    <%= form_for @create_query do |f| %>
+    <%= f.label "Author: " %>
+    <%= f.hidden_field :book_id, value: @book.id %>
+    <%= f.collection_select :author_id, Author.all, :id, :name %>
+    <%= f.submit "Add author" %>
+  <% end %>
+  </li>
+
+</ul>
+<%# <%= button_to "Edit #{@book.title}", edit_book_path %>
+<%= button_to "Destroy #{@book.title}!", @books_path, method: :delete %>

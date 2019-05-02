@@ -1,0 +1,12 @@
+<%= render 'header' %>
+
+<h1><%= @author.name %>  (<%= @author.birth_year %>)</h1>
+
+<p>This author's books:</p>
+<ul>
+  <% @author.books.each do |book| %>
+    <li><%= link_to book.title, book %></li>
+  <% end %>
+</ul>
+<%= button_to "Edit #{@author.name}", edit_author_path %>
+<%= button_to "Destroy #{@author.name}!", @authors_path, method: :delete %>
